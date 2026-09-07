@@ -451,14 +451,7 @@ def cross_validate_models_with_balanced_mse_wtrain(models, X_reg, y_reg, X_clf=N
                 )
                 test_f1_penalized_mse_scores.append(f1_pen_mse)
 
-                # dynamic_f1_pen_mse = mt.calculate_dynamic_f1_penalized_mse(
-                #     actual_times=reg_fold['y_true'],
-                #     predicted_times=reg_fold['y_pred'],
-                #     actual_events=clf_fold['y_true'],
-                #     predicted_events=clf_fold['y_pred']
-                # )
-                # test_dynamic_f1_penalized_mse_scores.append(dynamic_f1_pen_mse)
-
+          
                 recall_pen_mse = mt.calculate_recall_penalized_mse(
                     actual_times=reg_fold['y_true'],
                     predicted_times=reg_fold['y_pred'],
@@ -528,14 +521,6 @@ def cross_validate_models_with_balanced_mse_wtrain(models, X_reg, y_reg, X_clf=N
                 )
                 train_f1_penalized_mse_scores.append(f1_pen_mse)
 
-                # dynamic_f1_pen_mse = mt.calculate_dynamic_f1_penalized_mse(
-                #     actual_times=reg_fold['y_true'],
-                #     predicted_times=reg_fold['y_pred'],
-                #     actual_events=clf_fold['y_true'],
-                #     predicted_events=clf_fold['y_pred']
-                # )
-                # train_dynamic_f1_penalized_mse_scores.append(dynamic_f1_pen_mse)
-
                 recall_pen_mse = mt.calculate_recall_penalized_mse(
                     actual_times=reg_fold['y_true'],
                     predicted_times=reg_fold['y_pred'],
@@ -571,29 +556,7 @@ def cross_validate_models_with_balanced_mse_wtrain(models, X_reg, y_reg, X_clf=N
                 print(f"    Warning: Train indices mismatch in fold {reg_fold['fold']+1}")
 
 
-            
-            # # Print test fold metrics
-            # for fold_idx in range(len(test_balanced_penalized_mse_scores)):
-            #     print(f"    Fold {fold_idx+1} Test Metrics:")
-            #     print(f"      Penalized MSE: {test_penalized_mse_scores[fold_idx]:.4f}")
-            #     print(f"      Balanced Penalized MSE: {test_balanced_penalized_mse_scores[fold_idx]:.4f}")
-            #     # print(f"      Dynamic Penalized MSE: {test_dynamic_penalized_mse_scores[fold_idx]:.4f}")
-            #     print(f"      F1 Penalized MSE: {test_f1_penalized_mse_scores[fold_idx]:.4f}")
-            #     # print(f"      Dynamic F1 Penalized MSE: {test_dynamic_f1_penalized_mse_scores[fold_idx]:.4f}")
-            #     print(f"      Recall Penalized MSE: {test_recall_penalized_mse_scores[fold_idx]:.4f}")
-            #     print(f"      Dual-Weighted Penalized MSE: {test_dual_weighted_penalized_mse_scores[fold_idx]:.4f}")
-            
-            # # Print train fold metrics
-            # for fold_idx in range(len(train_balanced_penalized_mse_scores)):
-            #     print(f"    Fold {fold_idx+1} Train Metrics:")
-            #     print(f"      Penalized MSE: {train_penalized_mse_scores[fold_idx]:.4f}")
-            #     print(f"      Balanced Penalized MSE: {train_balanced_penalized_mse_scores[fold_idx]:.4f}")
-            #     # print(f"      Dynamic Penalized MSE: {train_dynamic_penalized_mse_scores[fold_idx]:.4f}")
-            #     print(f"      F1 Penalized MSE: {train_f1_penalized_mse_scores[fold_idx]:.4f}")
-            #     # print(f"      Dynamic F1 Penalized MSE: {train_dynamic_f1_penalized_mse_scores[fold_idx]:.4f}")
-            #     print(f"      Recall Penalized MSE: {train_recall_penalized_mse_scores[fold_idx]:.4f}")
-            #     print(f"      Dual-Weighted Penalized MSE: {train_dual_weighted_penalized_mse_scores[fold_idx]:.4f}")
-                
+       
             # Store test real MSE results
             if test_real_mse_scores:
                 real_mse_mean = np.mean(test_real_mse_scores)
@@ -663,57 +626,11 @@ def cross_validate_models_with_balanced_mse_wtrain(models, X_reg, y_reg, X_clf=N
                     'test': test_balanced_penalized_mse_scores,
                     'train': train_balanced_penalized_mse_scores
                 }
-            # Store test dynamic penalized MSE results
-            # if test_dynamic_penalized_mse_scores:
-            #     dynamic_pen_mse_mean = np.mean(test_dynamic_penalized_mse_scores)
-            #     dynamic_pen_mse_std = np.std(test_dynamic_penalized_mse_scores)
-            #     model_results['test']['dynamic_penalized_mse_scores'] = np.array(test_dynamic_penalized_mse_scores)
-            #     model_results['test']['dynamic_penalized_mse_mean'] = dynamic_pen_mse_mean
-            #     model_results['test']['dynamic_penalized_mse_std'] = dynamic_pen_mse_std
-            #     print(f"  Test Dynamic Penalized MSE: {dynamic_pen_mse_mean:.4f} ± {dynamic_pen_mse_std:.4f}")
-            #     dynamic_penalized_mse_results[model_name] = {
-            #         'test': test_dynamic_penalized_mse_scores,
-            #         'train': train_dynamic_penalized_mse_scores
-            #     }
+       
 
-            # # Store train dynamic penalized MSE results
-            # if train_dynamic_penalized_mse_scores:
-            #     dynamic_pen_mse_mean = np.mean(train_dynamic_penalized_mse_scores)
-            #     dynamic_pen_mse_std = np.std(train_dynamic_penalized_mse_scores)
-            #     model_results['train']['dynamic_penalized_mse_scores'] = np.array(train_dynamic_penalized_mse_scores)
-            #     model_results['train']['dynamic_penalized_mse_mean'] = dynamic_pen_mse_mean
-            #     model_results['train']['dynamic_penalized_mse_std'] = dynamic_pen_mse_std
-            #     print(f"  Train Dynamic Penalized MSE: {dynamic_pen_mse_mean:.4f} ± {dynamic_pen_mse_std:.4f}")
-               
-            #     dynamic_penalized_mse_results[model_name] = {
-            #         'test': test_dynamic_penalized_mse_scores,
-            #         'train': train_dynamic_penalized_mse_scores
-            #     }
+      
             
-            # # Store test dynamic F1 penalized MSE results
-            # if test_dynamic_f1_penalized_mse_scores:
-            #     dynamic_f1_pen_mse_mean = np.mean(test_dynamic_f1_penalized_mse_scores)
-            #     dynamic_f1_pen_mse_std = np.std(test_dynamic_f1_penalized_mse_scores)
-            #     model_results['test']['dynamic_f1_penalized_mse_scores'] = np.array(test_dynamic_f1_penalized_mse_scores)
-            #     model_results['test']['dynamic_f1_penalized_mse_mean'] = dynamic_f1_pen_mse_mean
-            #     model_results['test']['dynamic_f1_penalized_mse_std'] = dynamic_f1_pen_mse_std
-            #     print(f"  Test Dynamic F1 Penalized MSE: {dynamic_f1_pen_mse_mean:.4f} ± {dynamic_f1_pen_mse_std:.4f}")
-                
-            
-            # # Store train dynamic F1 penalized MSE results
-            # if train_dynamic_f1_penalized_mse_scores:
-            #     dynamic_f1_pen_mse_mean = np.mean(train_dynamic_f1_penalized_mse_scores)
-            #     dynamic_f1_pen_mse_std = np.std(train_dynamic_f1_penalized_mse_scores)
-            #     model_results['train']['dynamic_f1_penalized_mse_scores'] = np.array(train_dynamic_f1_penalized_mse_scores)
-            #     model_results['train']['dynamic_f1_penalized_mse_mean'] = dynamic_f1_pen_mse_mean
-            #     model_results['train']['dynamic_f1_penalized_mse_std'] = dynamic_f1_pen_mse_std
-            #     print(f"  Train Dynamic F1 Penalized MSE: {dynamic_f1_pen_mse_mean:.4f} ± {dynamic_f1_pen_mse_std:.4f}")
-                
-            #     dynamic_f1_penalized_mse_results[model_name] = {
-            #         'test': test_dynamic_f1_penalized_mse_scores,
-            #         'train': train_dynamic_f1_penalized_mse_scores
-            #     }
-            
+        
             # Store test F1 penalized MSE results
             if test_f1_penalized_mse_scores:
                 f1_pen_mse_mean = np.mean(test_f1_penalized_mse_scores)
@@ -860,58 +777,7 @@ def cross_validate_models_with_balanced_mse_wtrain(models, X_reg, y_reg, X_clf=N
         print(f"\n  Train Overall Confusion Matrix:")
         print(train_overall_cm)
         
-        # # Per-class performance metrics for test data
-        # test_classes = np.unique(all_test_y_true)
-        # test_class_metrics = {}
-        
-        # for cls in test_classes:
-        #     # Indices for this class
-        #     cls_indices = np.array(all_test_y_true) == cls
-        #     if np.any(cls_indices):
-        #         # True positives (correctly predicted this class)
-        #         tp = np.sum((np.array(all_test_y_true) == cls) & (np.array(all_test_y_pred) == cls))
-        #         # False negatives (missed this class)
-        #         fn = np.sum((np.array(all_test_y_true) == cls) & (np.array(all_test_y_pred) != cls))
-        #         # Total instances of this class
-        #         total = np.sum(cls_indices)
-                
-        #         class_recall = tp / total if total > 0 else 0
-                
-        #         test_class_metrics[f"Class_{cls}"] = {
-        #             "instances": total,
-        #             "proportion": total / len(all_test_y_true),
-        #             "recall": class_recall
-        #         }
-        
-        # # Per-class performance metrics for train data
-        # train_classes = np.unique(all_train_y_true)
-        # train_class_metrics = {}
-        
-        # for cls in train_classes:
-        #     # Indices for this class
-        #     cls_indices = np.array(all_train_y_true) == cls
-        #     if np.any(cls_indices):
-        #         # True positives (correctly predicted this class)
-        #         tp = np.sum((np.array(all_train_y_true) == cls) & (np.array(all_train_y_pred) == cls))
-        #         # False negatives (missed this class)
-        #         fn = np.sum((np.array(all_train_y_true) == cls) & (np.array(all_train_y_pred) != cls))
-        #         # Total instances of this class
-        #         total = np.sum(cls_indices)
-                
-        #         class_recall = tp / total if total > 0 else 0
-                
-        #         train_class_metrics[f"Class_{cls}"] = {
-        #             "instances": total,
-        #             "proportion": total / len(all_train_y_true),
-        #             "recall": class_recall
-        #         }
-        
-        # model_results['test'].update({'class_metrics':test_class_metrics})
-        # model_results['train'].update({'class_metrics':train_class_metrics})
-             
-        # # print(model_results['train'])
-        # # Store results for this model
-        
+      
         cv_results['train'][model_name] = model_results['train']
         cv_results['test'][model_name] = model_results['test']
         fold_predictions[model_name] = fold_preds
