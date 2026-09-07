@@ -5,8 +5,7 @@ from sklearn.metrics import (make_scorer, mean_squared_error, accuracy_score,
                             f1_score, recall_score, precision_score, 
                             balanced_accuracy_score, matthews_corrcoef,
                             confusion_matrix)
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 
 import importlib
 import metrics_functions as mt
